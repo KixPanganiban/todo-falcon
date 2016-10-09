@@ -5,15 +5,8 @@ import os
 import falcon
 from tinydb import TinyDB, Query
 
-DYNO_NAME = os.environ.get('HEROKU_APP_NAME', 'localhost')
-if DYNO_NAME == 'localhost':
-    BASE_URL = 'http://localhost:8000/todo'
-else:
-    PORT = int(os.environ.get('PORT', 8000))
-    BASE_URL = 'http://{dyno_name}.herokuapp.com:{port}/todo'.format(
-        dyno_name=DYNO_NAME,
-        port=PORT
-    )
+# Replace this with localhost:8000 if running locally
+BASE_URL = 'http://todo-backend-falcon.herokuapp.com/todo'
 
 
 def JSONSerialize(req, resp, resource):
