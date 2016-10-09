@@ -3,6 +3,7 @@ import logging
 import os
 
 import falcon
+from falcon_cors import CORS
 from tinydb import TinyDB, Query
 
 # Replace this with localhost:8000 if running locally
@@ -118,7 +119,9 @@ class TodoResource(object):
             resp.body = '[]'
 
 # Initialize the WSGI app
-app = falcon.API()
+cors = CORS(allow_all_origins=True, allow_all_headers=True,
+            allow_all_methods=True)
+app = falcon.API(middleware=[cors.middleware])
 
 # Load the routes
 todo = TodoResource()
